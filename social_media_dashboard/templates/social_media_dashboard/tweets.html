@@ -1,0 +1,20 @@
+<!-- social_media_dashboard/templates/social_media_dashboard/tweets.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Feed</title>
+</head>
+<body>
+    <h1>Latest Tweets</h1>
+    <ul>
+        {% for tweet in tweets %}
+            <li>
+                <strong>{{ tweet.user.name }}</strong> - {{ tweet.created_at }}
+                <p>{{ tweet.text }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

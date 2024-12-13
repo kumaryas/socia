@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Dashboard - User Landing Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+        .landing-page {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .card {
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            text-align: center;
+            color: #333;
+        }
+        .btn-custom {
+            width: 220px;
+            font-size: 18px;
+            padding: 12px;
+            margin: 10px;
+            border-radius: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .btn-primary {
+            background-color: #0984e3;
+            border-color: #0984e3;
+        }
+        .btn-secondary {
+            background-color: #74b9ff;
+            border-color: #74b9ff;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-page">
+        <div class="card">
+            <h1 class="mb-4">Welcome to the Social Media Dashboard</h1>
+            <p class="mb-4">Please login or register to continue.</p>
+            <a href="{% url 'users:login' %}" class="btn btn-custom btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+            <a href="{% url 'users:register' %}" class="btn btn-custom btn-secondary">
+                <i class="fas fa-user-plus"></i> Register
+            </a>
+        </div>
+        <footer>
+            <p>&copy; 2024 Social Media Dashboard. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>

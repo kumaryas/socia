@@ -1,0 +1,28 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Dashboard ye dashboard wala h</title>
+</head>
+<body>
+    <h1>Welcome to Your Social Media Dashboard</h1>
+    
+    <h2>Your Recent Tweets:</h2>
+    <ul>
+        {% for tweet in tweets %}
+            <li>{{ tweet }}</li>
+        {% empty %}
+            <li>No tweets available</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Your Most Recent Tweet:</h2>
+    {% if tweets %}
+        <p>{{ tweets.0.text }}</p>  <!-- Displaying the most recent tweet -->
+    {% else %}
+        <p>No tweets available</p>
+    {% endif %}
+</body>
+</html>

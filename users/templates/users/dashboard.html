@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color:  #74b9ff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .card ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .card li {
+            margin: 10px 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .error-message {
+            color: #d9534f;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                width: 90%;
+            }
+        }
+
+        .input-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .input-container input {
+            padding: 10px;
+            font-size: 14px;
+            width: 250px;
+        }
+
+        .input-container button {
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .input-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome, {{ request.user.username }}!</h1>
+        <p>Your personalized dashboard</p>
+    </header>
+
+    <div class="container">
+        <!-- Input fields for fetching posts of other users -->
+        <div class="input-container">
+            <form method="GET" action="{% url 'dashboard' %}">
+                <label for="twitter_handle">Enter Twitter Handle:</label>
+                <input type="text" id="twitter_handle" name="twitter_handle" placeholder="e.g., user_handle" value="{{ twitter_handle }}">
+                <button type="submit">Fetch Tweets</button>
+            </form>
+            <form method="GET" action="{% url 'dashboard' %}">
+                <label for="instagram_username">Enter Instagram Username:</label>
+                <input type="text" id="instagram_username" name="instagram_username" placeholder="e.g., user_name" value="{{ instagram_username }}">
+                <button type="submit">Fetch Instagram Posts</button>
+            </form>
+        </div>
+
+        <div class="grid">
+            <!-- Twitter Card -->
+            <div class="card">
+                <h3>Twitter Data</h3>
+                {% if twitter_data %}
+                    <ul>
+                        {% for tweet in twitter_data %}
+                            <li>{{ tweet.text }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="error-message">No Twitter data available or error occurred.</p>
+                {% endif %}
+            </div>
+
+            <!-- Instagram Card -->
+            <div class="card">
+                <h3>Instagram Data</h3>
+                {% if instagram_data %}
+                    <ul>
+                        {% for post in instagram_data %}
+                            <li>
+                                <img src="{{ post.media_url }}" alt="Instagram Post" style="max-width: 100%; height: auto;">
+                                <p>{{ post.caption }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="error-message">No Instagram data available or error occurred.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Social Media Dashboard | All Rights Reserved</p>
+    </footer>
+</body>
+</html>
